@@ -171,4 +171,5 @@ cython_debug/
 .pypirc
 
 documents/*
-documents_decrypted/*
+documents_encrypted/*
+iv_store.json
