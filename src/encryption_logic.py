@@ -1,16 +1,28 @@
 import os
 import hashlib
 import json
+import sys
+
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
 class EmergencyDriveCrypto:
-    def __init__(self, passkey: str, iv_store_path="iv_store.json"):
+    def __init__(self, passkey: str):
         if len(passkey) != 16 or not passkey.isalnum():
             raise ValueError("Passkey must be a 16-character alphanumeric string.")
         self.key = hashlib.sha256(passkey.encode()).digest()  # Derive a 256-bit key from the passkey
-        self.iv_store_path = iv_store_path
+        self.iv_store_path = self._get_iv_store_path()
+        self.iv_store = {}
         self._load_iv_store()
+
+    def _get_iv_store_path(self):
+        """Return the path to the iv_index.json file located in the same directory as the executable or script."""
+        if getattr(sys, 'frozen', False):  # Running as a PyInstaller executable
+            app_dir = os.path.dirname(os.path.abspath(sys.executable))
+            app_dir = os.path.abspath(os.path.join(app_dir, '../../../'))
+            return os.path.join(app_dir, 'iv_index.json')
+        else:  # Running as a script
+            return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'iv_index.json')
 
     def _load_iv_store(self):
         """Load or initialize the IV store."""

@@ -1,4 +1,5 @@
 import os
+import sys
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from encryption_logic import EmergencyDriveCrypto
@@ -106,7 +107,11 @@ class EncryptionApp:
             self.toggle_button.config(text="Show")  # Change button text to 'Show'
 
     def select_folder(self):
-        project_root = os.getcwd()  # This gets the current working directory (project root)
+        project_root = os.path.join(os.getcwd())
+        if getattr(sys, 'frozen', False):  # Running as a PyInstaller executable
+            project_root = os.path.dirname(os.path.abspath(sys.executable))  # This gets the current working directory (project root)
+            project_root = os.path.abspath(os.path.join(project_root, '../../../'))
+
         folder = filedialog.askdirectory(initialdir=project_root)
         if folder:
             self.folder_path.set(folder)
