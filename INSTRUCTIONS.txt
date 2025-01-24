@@ -1,0 +1,13 @@
+This flash drive contains critical information in case there is an emergency.
+All important data is encrypted and requires a program to decrypt everything.
+
+If you are using a Windows computer:
+    run the program called RUN_ME_WINDOWS
+
+If you are using a Mac/MacBook:
+    run the program called RUN_ME_MACOSX
+
+If you are using a Linux computer:
+    run the program called RUN_ME_LINUX
+
+The 16 character-long password can be found ....
