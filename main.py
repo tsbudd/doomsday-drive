@@ -15,7 +15,7 @@ class EncryptionApp:
 
         # Window dimensions
         window_width = 500
-        window_height = 300
+        window_height = 325
 
         # Calculate position to center the window
         position_top = int(screen_height / 2 - window_height / 2)
@@ -41,26 +41,26 @@ class EncryptionApp:
         self.passkey_entry.pack(side=tk.LEFT)
 
         # Toggle Visibility Button
-        self.toggle_button = tk.Button(passkey_frame, text="Show", command=self.toggle_passkey_visibility)
+        self.toggle_button = tk.Button(passkey_frame, text="Show", command=self.toggle_passkey_visibility, height=2, width=5)
         self.toggle_button.pack(side=tk.LEFT)
 
         # Padding Frame
         self.padding_frame = tk.Frame(root)
-        self.padding_frame.pack(pady=20)
+        self.padding_frame.pack(pady=10)
 
         # Folder Selection
         self.folder_path = tk.StringVar()
-        self.folder_button = tk.Button(root, text="Select Folder", command=self.select_folder, state=tk.DISABLED)
+        self.folder_button = tk.Button(root, text="Select Folder", command=self.select_folder, state=tk.DISABLED, height=2, width=20)
         self.folder_button.pack(pady=5)
         self.folder_label = tk.Label(root, textvariable=self.folder_path)
         self.folder_label.pack(pady=5)
 
         # Encrypt Button
-        self.encrypt_button = tk.Button(root, text="Encrypt", command=self.encrypt, state=tk.DISABLED)
+        self.encrypt_button = tk.Button(root, text="Encrypt", command=self.encrypt, state=tk.DISABLED, height=2, width=20)
         self.encrypt_button.pack(pady=10)
 
         # Decrypt Button
-        self.decrypt_button = tk.Button(root, text="Decrypt", command=self.decrypt, state=tk.DISABLED)
+        self.decrypt_button = tk.Button(root, text="Decrypt", command=self.decrypt, state=tk.DISABLED, height=2, width=20)
         self.decrypt_button.pack(pady=5)
 
     def limit_passkey_length(self, *args):
